@@ -6,14 +6,14 @@
 #    By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:53:36 by evocatur          #+#    #+#              #
-#    Updated: 2023/11/24 17:16:31 by evocatur         ###   ########.fr        #
+#    Updated: 2023/11/24 17:55:04 by evocatur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = cub3d
 
-SRC = $(UTILS) $(WINDOW) $(KEY) $(GAME_LOGIC) $(LIBFT_SRC) $(MAIN_SRC)
+SRC = $(UTILS) $(WINDOW) $(KEY) $(GAME_LOGIC) $(LIBFT_SRC) $(MAP_READ) $(GAME_ENGINE) $(MAIN_SRC)
 
 MAIN_SRC = src/cub3d.c
 
@@ -24,6 +24,10 @@ WINDOW = src/window/window.c
 KEY = src/key/key.c
 
 GAME_LOGIC = src/game_logic/main_loop.c
+
+GAME_ENGINE = src/game_engine/renderer.c
+
+MAP_READ = src/map_read/map_read.c
 
 LIBFT_SRC = lib/ft_libft/ft_isdigit.c lib/ft_libft/ft_memset.c lib/ft_libft/ft_split.c lib/ft_libft/ft_strtrim.c lib/ft_libft/ft_isprint.c\
 lib/ft_libft/ft_putchar_fd.c lib/ft_libft/ft_strlcat.c lib/ft_libft/ft_substr.c lib/ft_libft/ft_atoi.c lib/ft_libft/ft_itoa.c lib/ft_libft/ft_putendl_fd.c \

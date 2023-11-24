@@ -43,7 +43,7 @@ typedef struct	s_map
 {
 	char		**map;
 	t_vector3	size;
-
+	t_vector3	floor_color;
 }				t_map;
 
 typedef struct	s_game
@@ -52,6 +52,7 @@ typedef struct	s_game
 	void		*mlx;
 	t_map		map;
 	t_window	window;
+	t_player	player;
 }				t_game;
 
 int			check_extension(char *file);
@@ -59,5 +60,7 @@ int			main_loop(void *param);
 t_window	ft_new_window(t_game game, int widht, int height, char *name);
 int			close_game(t_game *game);
 int			key_hook(int keycode, void *param);
-
+void		renderer(t_game *game);
+void		free_matrix(char **map);
+t_map		readmap(void *param, char *file);
 #endif
