@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 16:04:18 by evocatur          #+#    #+#             */
-/*   Updated: 2023/11/24 16:58:09 by evocatur         ###   ########.fr       */
+/*   Created: 2023/01/25 16:06:52 by evocatur          #+#    #+#             */
+/*   Updated: 2023/02/11 14:39:43 by evocatur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+static t_list	*lstlast(t_list *lst)
 {
-	t_game	game;
-	
-	if (argc != 2 || check_extension(argv[1]) == 1)
-		close_game(&game);
+	while (lst)
+	{
+		if (!lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}
 
-	game.mlx = mlx_init();
-	
-	game.window = ft_new_window(game,1980, 1080, "cub3d");
-	mlx_key_hook(game.window.reference, *key_hook, &game);
-	mlx_loop_hook(game.mlx, main_loop, &game);
-	mlx_hook(game.window.reference, 17, 0, *close_game, &game);
-	mlx_loop(game.mlx);
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*tmp;
+
+	tmp = NULL;
+	if (lst)
+	{
+		if ((*lst))
+		{
+			tmp = lstlast((*lst));
+			tmp->next = new;
+		}
+		else
+			*lst = new;
+	}
+	return ;
 }

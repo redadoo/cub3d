@@ -6,16 +6,35 @@
 #    By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:53:36 by evocatur          #+#    #+#              #
-#    Updated: 2023/11/24 15:51:03 by evocatur         ###   ########.fr        #
+#    Updated: 2023/11/24 17:16:31 by evocatur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = cub3d
 
-SRC = $(MAIN_SRC)
+SRC = $(UTILS) $(WINDOW) $(KEY) $(GAME_LOGIC) $(LIBFT_SRC) $(MAIN_SRC)
 
 MAIN_SRC = src/cub3d.c
+
+UTILS = src/utils/exit.c src/utils/string_utils.c
+
+WINDOW = src/window/window.c
+
+KEY = src/key/key.c
+
+GAME_LOGIC = src/game_logic/main_loop.c
+
+LIBFT_SRC = lib/ft_libft/ft_isdigit.c lib/ft_libft/ft_memset.c lib/ft_libft/ft_split.c lib/ft_libft/ft_strtrim.c lib/ft_libft/ft_isprint.c\
+lib/ft_libft/ft_putchar_fd.c lib/ft_libft/ft_strlcat.c lib/ft_libft/ft_substr.c lib/ft_libft/ft_atoi.c lib/ft_libft/ft_itoa.c lib/ft_libft/ft_putendl_fd.c \
+lib/ft_libft/ft_strlcpy.c lib/ft_libft/ft_tolower.c lib/ft_libft/ft_bzero.c lib/ft_libft/ft_putnbr_fd.c lib/ft_libft/ft_strlen.c \
+lib/ft_libft/ft_toupper.c lib/ft_libft/ft_calloc.c lib/ft_libft/ft_memchr.c lib/ft_libft/ft_putstr_fd.c lib/ft_libft/ft_strmapi.c lib/ft_libft/ft_isalnum.c \
+lib/ft_libft/ft_memcmp.c lib/ft_libft/ft_strncmp.c lib/ft_libft/ft_isalpha.c lib/ft_libft/ft_memcpy.c\
+lib/ft_libft/ft_strnstr.c lib/ft_libft/ft_isascii.c lib/ft_libft/ft_memmove.c lib/ft_libft/ft_strdup.c lib/ft_libft/ft_strrchr.c lib/ft_libft/ft_striteri.c \
+lib/ft_libft/ft_printf.c lib/ft_libft/ft_printf_utilis.c lib/ft_libft/ft_printf_flag.c lib/ft_libft/ft_printf_hex.c lib/ft_libft/ft_printf_p.c \
+lib/ft_libft/ft_printf_unsigned.c lib/ft_libft/ft_lstadd_back.c lib/ft_libft/ft_lstadd_front.c lib/ft_libft/ft_lstclear.c lib/ft_libft/ft_lstdelone.c \
+lib/ft_libft/ft_lstiter.c lib/ft_libft/ft_lstlast.c lib/ft_libft/ft_lstmap.c lib/ft_libft/ft_lstnew.c lib/ft_libft/ft_lstsize.c \
+lib/ft_libft/get_next_line.c lib/ft_libft/get_next_line_utils.c
 
 OBJ = *.o
 
@@ -35,7 +54,7 @@ ifeq ($(UNAME_S),Darwin)
 LINKS += -lmlx -framework OpenGL -framework AppKit
 endif
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -lm
 
 all: $(NAME)
 
@@ -54,8 +73,8 @@ exe: all
 	@./$(NAME)
 	@echo "\n     - Done -"
 
-play0: all
-	@./$(NAME) map/map_0.ber
+play: all
+	@./$(NAME) map/test.cub
 
 error : all
 	@./$(NAME) map/error_map.ber

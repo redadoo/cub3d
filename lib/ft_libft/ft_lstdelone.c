@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 16:04:18 by evocatur          #+#    #+#             */
-/*   Updated: 2023/11/24 16:58:09 by evocatur         ###   ########.fr       */
+/*   Created: 2023/01/25 16:14:59 by evocatur          #+#    #+#             */
+/*   Updated: 2023/02/09 17:45:32 by evocatur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	t_game	game;
-	
-	if (argc != 2 || check_extension(argv[1]) == 1)
-		close_game(&game);
-
-	game.mlx = mlx_init();
-	
-	game.window = ft_new_window(game,1980, 1080, "cub3d");
-	mlx_key_hook(game.window.reference, *key_hook, &game);
-	mlx_loop_hook(game.mlx, main_loop, &game);
-	mlx_hook(game.window.reference, 17, 0, *close_game, &game);
-	mlx_loop(game.mlx);
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
 }
