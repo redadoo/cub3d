@@ -26,6 +26,11 @@
 #include <fcntl.h>
 #include "lib/ft_libft/libft.h"
 
+#define NORTHFACE "path"
+#define SOUTHFACE "path"
+#define	EASTFACE  "path"
+#define OVESTFACE "path"
+
 typedef struct	s_window
 {
 	t_vector2	size;
@@ -42,7 +47,6 @@ typedef struct	s_player
 typedef struct	s_map
 {
 	char		**map;
-	t_vector3	size;
 	t_vector3	floor_color;
 }				t_map;
 
@@ -55,12 +59,27 @@ typedef struct	s_game
 	t_player	player;
 }				t_game;
 
-int			check_extension(char *file);
-int			main_loop(void *param);
-t_window	ft_new_window(t_game game, int widht, int height, char *name);
-int			close_game(t_game *game);
-int			key_hook(int keycode, void *param);
+/* GAME ENGINE */
 void		renderer(t_game *game);
+
+/* UTILS */
+int			check_extension(char *file);
+
+/* GAME LOGIC */
+int			main_loop(void *param);
+
+/* UTILS */
+int			close_game(t_game *game);
 void		free_matrix(char **map);
-t_map		readmap(void *param, char *file);
+void		print_matrix(char **matrix);
+/* WINDOW */
+t_window	ft_new_window(t_game game, int widht, int height, char *name);
+
+/* MAP READ */
+t_map		readmap(char *file);
+void		init_map(t_map *map);
+
+/* KEY */
+int			key_hook(int keycode, void *param);
+
 #endif
