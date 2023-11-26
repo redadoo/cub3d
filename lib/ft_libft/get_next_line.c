@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:17:29 by evocatur          #+#    #+#             */
-/*   Updated: 2023/11/24 16:46:07 by evocatur         ###   ########.fr       */
+/*   Updated: 2023/11/24 22:17:16 by edoardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-	
+
 char	*ft_statstr(int fd, char *statstr)
 {
 	char	*str;

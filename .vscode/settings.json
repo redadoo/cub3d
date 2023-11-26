@@ -1,6 +1,10 @@
 {
     "files.associations": {
-        "cub3d.h": "c"
+        "cub3d.h": "c",
+        "mlx.h": "c",
+        "vector.h": "c",
+        "stdlib.h": "c",
+        "map": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

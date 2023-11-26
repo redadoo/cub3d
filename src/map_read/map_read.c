@@ -6,13 +6,13 @@
 /*   By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:50:16 by evocatur          #+#    #+#             */
-/*   Updated: 2023/11/24 20:22:03 by edoardo          ###   ########.fr       */
+/*   Updated: 2023/11/26 13:01:26 by edoardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static int map_height(char *file)
+static	int	map_height(char *file)
 {
 	char	c;	
 	int		fd;	
@@ -24,7 +24,6 @@ static int map_height(char *file)
 	if (!fd)
 		return (-1);
 	linecount = 1;
-	is_map = 0;
 	while (true)
 	{
 		readcount = read(fd, &c, 1);
@@ -35,13 +34,11 @@ static int map_height(char *file)
 		if (c == '1')
 			is_map = 1;
 		if (is_map && c == '\n')
-		{
-			is_map = 0; 
 			linecount++;
-		}
+		is_map = 0;
 	}
 	close(fd);
-	return (linecount);	
+	return (linecount);
 }
 
 int	file_linecount(char *file)
@@ -72,32 +69,29 @@ int	file_linecount(char *file)
 /* read a file and return the map inside it*/
 t_map	readmap(char *file)
 {
-	int				i;
-	int				j;
 	int				fd;
 	char			*str;
 	char			**map;
+	t_vector2_int	index;
 	t_map			game_map;
 
 	map = ft_calloc((sizeof(char *)), map_height(file) + 1);
- 	if (map == NULL)
+	if (map == NULL)
 		return (game_map);
 	fd = open(file, O_RDONLY);
-	i = 0;
-	j = 0;
-	while (i < file_linecount(file))
+	index.x = -1;
+	index.y = -1;
+	while (++index.x < file_linecount(file))
 	{
 		str = get_next_line(fd);
- 		if (str[0] == '1')
-		{
-			map[j] = ft_strdup(str);
-			j++;
-		}
-		i++;
+		if (str[0] == '1')
+			map[++index.y] = ft_strdup(str);
+		else
+			extract_info(&game_map, str);
+		free(str);
 	}
 	game_map.map = map;
- 	close(fd);
-	init_map(&game_map);
+	close(fd);
 	return (game_map);
 }
 

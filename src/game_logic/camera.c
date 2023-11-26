@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer.c                                         :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 17:29:00 by evocatur          #+#    #+#             */
-/*   Updated: 2023/11/24 17:42:07 by evocatur         ###   ########.fr       */
+/*   Created: 2023/11/26 12:47:56 by edoardo           #+#    #+#             */
+/*   Updated: 2023/11/26 13:01:40 by edoardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void renderer(t_game *game)
+void	init_camera(t_camera *camera)
 {
-        
+	camera->camera_plane.x = 0;
+	camera->camera_plane.y = 0.66;
 }

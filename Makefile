@@ -6,7 +6,7 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:53:36 by evocatur          #+#    #+#              #
-#    Updated: 2023/11/24 20:21:17 by edoardo          ###   ########.fr        #
+#    Updated: 2023/11/26 13:09:09 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ WINDOW = src/window/window.c
 
 KEY = src/key/key.c
 
-GAME_LOGIC = src/game_logic/main_loop.c
+GAME_LOGIC = src/game_logic/main_loop.c src/game_logic/player.c src/game_logic/camera.c
 
-GAME_ENGINE = src/game_engine/renderer.c
+GAME_ENGINE = src/game_engine/raycasting.c
 
 MAP_READ = src/map_read/map_read.c src/map_read/init_map.c
 
@@ -39,6 +39,10 @@ lib/ft_libft/ft_printf.c lib/ft_libft/ft_printf_utilis.c lib/ft_libft/ft_printf_
 lib/ft_libft/ft_printf_unsigned.c lib/ft_libft/ft_lstadd_back.c lib/ft_libft/ft_lstadd_front.c lib/ft_libft/ft_lstclear.c lib/ft_libft/ft_lstdelone.c \
 lib/ft_libft/ft_lstiter.c lib/ft_libft/ft_lstlast.c lib/ft_libft/ft_lstmap.c lib/ft_libft/ft_lstnew.c lib/ft_libft/ft_lstsize.c \
 lib/ft_libft/get_next_line.c lib/ft_libft/get_next_line_utils.c
+
+COLLIDER_SRC = lib/collider/collider.c 
+
+VECTOR_SRC = lib/vector/vector.c 
 
 OBJ = *.o
 
@@ -80,20 +84,14 @@ exe: all
 play: all
 	@./$(NAME) map/test.cub
 
-error : all
-	@./$(NAME) map/error_map.ber
-
-big : all
-	@./$(NAME) map/big.ber
-
-extension : all
-	@./$(NAME) map/big.bera
-
 leaks: all
 	@leaks --atExit -- ./$(NAME) map/map_0.ber
 
 norm:
 	@norminette $(SRC)
+	@norminette lib/collider/collider.h
+	@norminette lib/vector/vector.h
+	@norminette $(NAME).h
 
 clean:
 	@echo $(CURSIVE)$(GRAY) "     - Removing object files..." $(NONE)
