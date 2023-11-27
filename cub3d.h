@@ -47,6 +47,7 @@ typedef struct s_window
 
 typedef struct s_player
 {
+	t_vector2_int		map_pos;
 	t_vector3			pos;
 	t_vector2			dir;
 	t_3dbox_collider	collider;
@@ -79,6 +80,7 @@ typedef struct s_camera
 
 typedef struct s_ray
 {
+	int			ray_height;
 	t_vector2	ray_dir;
 	t_vector3	ray_lenght;
 }				t_ray;
@@ -111,7 +113,7 @@ void		print_matrix(char **matrix);
 t_vector3	string_to_vector(char *str);
 void		print_vector3(t_vector3 v);
 t_vector3	set_vector3(float x, float y, float z);
-t_vector2	set_vector2(float x, float y);
+void		set_vector2(t_vector2 *v, float x, float y);
 
 /* WINDOW */
 t_window	ft_new_window(void *mlx, int widht, int height, char *name);

@@ -64,11 +64,8 @@ t_vector3	set_vector3(float x, float y, float z)
 	return (v);
 }
 
-t_vector2	set_vector2(float x, float y)
+void	set_vector2(t_vector2 *v, float x, float y)
 {
-	t_vector2	v;
-
-	v.x = x;
-	v.y = y;
-	return (v);
+	v->x = x;
+	v->y = y;
 }

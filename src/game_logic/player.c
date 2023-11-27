@@ -18,22 +18,20 @@ void	init_player(t_player *player, char **map)
 
 	i.x = 0;
 	i.y = 0;
+	player->dir.x = 0;
+	player->dir.y = 0;
 	while (map[i.x])
 	{
 		while (map[i.x][i.y])
 		{
-			if (check_dir(map[i.x][i.y]) == 1)
-			{
-				player->pos = set_vector3(i.x, i.x, i.y);
-				if (map[i.x][i.y] == 'N')
-					player->dir = set_vector2(0, 1);
-				if (map[i.x][i.y] == 'S')
+/*  			if (map[i.x][i.y] == 'N')
+				set_vector2(&player->dir, 0, 1); */
+/*			if (map[i.x][i.y] == 'S')
 					player->dir = set_vector2(0, -1);
-				if (map[i.x][i.y] == 'E')
+			if (map[i.x][i.y] == 'E')
 					player->dir = set_vector2(1, 0);
-				if (map[i.x][i.y] == 'W')
-					player->dir = set_vector2(-1, 0);
-			}
+			if (map[i.x][i.y] == 'W')
+					player->dir = set_vector2(-1, 0); */
 			i.y++;
 		}
 		i.y = 0;
